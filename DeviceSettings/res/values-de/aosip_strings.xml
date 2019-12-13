@@ -52,4 +52,6 @@
     <string name="category_vibrator">Vibration</string>
     <string name="vib_strength_title_head">Vibrationsstärke des Systems</string>
     <string name="vib_strength_summary_head">Stärke der Vibration einstellen</string>
+    <string name="vibration_warning">Eine zu hohe Einstellung der Stärke kann zu dauerhaften Hardwareschäden führen</string>
+
 </resources>
