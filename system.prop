@@ -12,6 +12,7 @@ ro.kernel.ebpf.supported=false
 
 # Camera
 camera.disable_zsl_mode=1
+vendor.camera.aux.packagelist=com.android.camera,com.oneplus.camera,org.codeaurora.snapcam
 
 # Charger
 ro.charger.disable_init_blank=true
