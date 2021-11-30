@@ -26,6 +26,8 @@ import android.provider.Settings;
 import android.text.TextUtils;
 import androidx.preference.PreferenceManager;
 
+import com.radiant.device.DeviceSettings.ModeSwitch.*;
+
 public class Startup extends BroadcastReceiver {
 
     private static final String TAG = "BootReceiver";

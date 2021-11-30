@@ -17,6 +17,7 @@
 */
 package com.radiant.device.DeviceSettings;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.view.MenuItem;
@@ -25,6 +26,10 @@ import androidx.preference.PreferenceFragment;
 import androidx.preference.ListPreference;
 import androidx.preference.Preference;
 import androidx.preference.TwoStatePreference;
+import android.os.Build;
+import androidx.preference.SwitchPreference;
+import com.radiant.device.DeviceSettings.ModeSwitch.DCModeSwitch;
+import com.radiant.device.DeviceSettings.ModeSwitch.HBMModeSwitch;
 
 public class DeviceSettings extends PreferenceFragment
         implements Preference.OnPreferenceChangeListener {
@@ -36,50 +41,45 @@ public class DeviceSettings extends PreferenceFragment
     public static final String KEY_NIGHT_SWITCH = "night";
     public static final String KEY_ADAPTIVE_SWITCH = "adaptive";
     public static final String KEY_ONEPLUS_SWITCH = "oneplus";
-
     public static final String KEY_VIBSTRENGTH = "vib_strength";
-    private VibratorStrengthPreference mVibratorStrength;
+    public static final String KEY_SETTINGS_PREFIX = "device_setting_";
 
-    private static TwoStatePreference mHBMModeSwitch;
-    private static TwoStatePreference mDCModeSwitch;
-    private ListPreference mTopKeyPref;
-    private ListPreference mMiddleKeyPref;
-    private ListPreference mBottomKeyPref;
+    private TwoStatePreference mHBMModeSwitch;
+    private VibratorStrengthPreference mVibratorStrength;
 
     @Override
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
         addPreferencesFromResource(R.xml.main);
-        getActivity().getActionBar().setDisplayHomeAsUpEnabled(true);
 
         mVibratorStrength = (VibratorStrengthPreference) findPreference(KEY_VIBSTRENGTH);
         if (mVibratorStrength != null)
             mVibratorStrength.setEnabled(VibratorStrengthPreference.isSupported());
 
-        mTopKeyPref = (ListPreference) findPreference(Constants.NOTIF_SLIDER_TOP_KEY);
+        TwoStatePreference mDCModeSwitch = findPreference(KEY_DC_SWITCH);
+        ListPreference mTopKeyPref = findPreference(Constants.NOTIF_SLIDER_TOP_KEY);
         mTopKeyPref.setValueIndex(Constants.getPreferenceInt(getContext(), Constants.NOTIF_SLIDER_TOP_KEY));
         mTopKeyPref.setOnPreferenceChangeListener(this);
-        mMiddleKeyPref = (ListPreference) findPreference(Constants.NOTIF_SLIDER_MIDDLE_KEY);
+        ListPreference mMiddleKeyPref = findPreference(Constants.NOTIF_SLIDER_MIDDLE_KEY);
         mMiddleKeyPref.setValueIndex(Constants.getPreferenceInt(getContext(), Constants.NOTIF_SLIDER_MIDDLE_KEY));
         mMiddleKeyPref.setOnPreferenceChangeListener(this);
-        mBottomKeyPref = (ListPreference) findPreference(Constants.NOTIF_SLIDER_BOTTOM_KEY);
+        ListPreference mBottomKeyPref = findPreference(Constants.NOTIF_SLIDER_BOTTOM_KEY);
         mBottomKeyPref.setValueIndex(Constants.getPreferenceInt(getContext(), Constants.NOTIF_SLIDER_BOTTOM_KEY));
         mBottomKeyPref.setOnPreferenceChangeListener(this);
 
-        mDCModeSwitch = (TwoStatePreference) findPreference(KEY_DC_SWITCH);
         mDCModeSwitch.setEnabled(DCModeSwitch.isSupported());
-        mDCModeSwitch.setChecked(DCModeSwitch.isCurrentlyEnabled(this.getContext()));
+        mDCModeSwitch.setChecked(DCModeSwitch.isCurrentlyEnabled());
         mDCModeSwitch.setOnPreferenceChangeListener(new DCModeSwitch());
 
-        mHBMModeSwitch = (TwoStatePreference) findPreference(KEY_HBM_SWITCH);
+        mHBMModeSwitch = findPreference(KEY_HBM_SWITCH);
         mHBMModeSwitch.setEnabled(HBMModeSwitch.isSupported());
-        mHBMModeSwitch.setChecked(HBMModeSwitch.isCurrentlyEnabled(this.getContext()));
+        mHBMModeSwitch.setChecked(HBMModeSwitch.isCurrentlyEnabled());
         mHBMModeSwitch.setOnPreferenceChangeListener(this);
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        mHBMModeSwitch.setChecked(HBMModeSwitch.isCurrentlyEnabled(this.getContext()));
+        mHBMModeSwitch.setChecked(HBMModeSwitch.isCurrentlyEnabled());
     }
 
     @Override
@@ -87,24 +87,24 @@ public class DeviceSettings extends PreferenceFragment
         if (preference == mHBMModeSwitch) {
             Boolean enabled = (Boolean) newValue;
             Utils.writeValue(HBMModeSwitch.getFile(), enabled ? "5" : "0");
-            Intent hbmIntent = new Intent(this.getContext(),
+            Intent hbmIntent = new Intent(getContext(),
                     com.radiant.device.DeviceSettings.HBMModeService.class);
             if (enabled) {
-                this.getContext().startService(hbmIntent);
+                getContext().startService(hbmIntent);
             } else {
-                this.getContext().stopService(hbmIntent);
+                getContext().stopService(hbmIntent);
             }
-        } else {
-            Constants.setPreferenceInt(getContext(), preference.getKey(), Integer.parseInt((String) newValue));
+        } else if (newValue instanceof String) {
+            Constants.setPreferenceInt(getContext(), preference.getKey(),
+                    Integer.parseInt((String) newValue));
         }
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
         // Respond to the action bar's Up/Home button
-        case android.R.id.home:
+        if (item.getItemId() == android.R.id.home) {
             getActivity().finish();
             return true;
         }

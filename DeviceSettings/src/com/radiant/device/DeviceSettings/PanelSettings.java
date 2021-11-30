@@ -34,6 +34,8 @@ import androidx.preference.Preference;
 import androidx.preference.PreferenceManager;
 import androidx.viewpager.widget.ViewPager;
 
+import com.radiant.device.DeviceSettings.ModeSwitch.*;
+
 public class PanelSettings extends PreferenceFragment implements RadioGroup.OnCheckedChangeListener {
     private RadioGroup mRadioGroup;
     ViewPager viewPager;
@@ -46,15 +48,15 @@ public class PanelSettings extends PreferenceFragment implements RadioGroup.OnCh
         super.onViewCreated(view, savedInstanceState);
         mRadioGroup = (RadioGroup) view.findViewById(R.id.radio_group);
         int checkedButtonId = R.id.off_mode;
-        if (NightModeSwitch.isCurrentlyEnabled(getContext())) {
+        if (NightModeSwitch.isCurrentlyEnabled()) {
             checkedButtonId = R.id.night_mode;
-        } else if (DCIModeSwitch.isCurrentlyEnabled(getContext())) {
+        } else if (DCIModeSwitch.isCurrentlyEnabled()) {
             checkedButtonId = R.id.dci_mode;
-        } else if (SRGBModeSwitch.isCurrentlyEnabled(getContext())) {
+        } else if (SRGBModeSwitch.isCurrentlyEnabled()) {
             checkedButtonId = R.id.srgb_mode;
-        } else if (AdaptiveModeSwitch.isCurrentlyEnabled(getContext())) {
+        } else if (AdaptiveModeSwitch.isCurrentlyEnabled()) {
             checkedButtonId = R.id.adaptive_mode;
-        } else if (OnePlusModeSwitch.isCurrentlyEnabled(getContext())) {
+        } else if (OnePlusModeSwitch.isCurrentlyEnabled()) {
             checkedButtonId = R.id.oneplus_mode;
         }
         mRadioGroup.check(checkedButtonId);
