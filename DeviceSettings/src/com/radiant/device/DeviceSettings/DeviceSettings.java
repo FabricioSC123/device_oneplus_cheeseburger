@@ -17,29 +17,14 @@
 */
 package com.radiant.device.DeviceSettings;
 
-import android.app.AlertDialog;
-import android.app.Dialog;
-import android.content.res.Resources;
-import android.content.Intent;
 import android.os.Bundle;
 import android.provider.Settings;
-import android.text.TextUtils;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
-import android.widget.ListView;
-import android.util.Log;
 import androidx.preference.PreferenceFragment;
-import androidx.preference.SwitchPreference;
 import androidx.preference.ListPreference;
 import androidx.preference.Preference;
-import androidx.preference.PreferenceCategory;
-import androidx.preference.PreferenceGroup;
-import androidx.preference.PreferenceScreen;
 import androidx.preference.TwoStatePreference;
-
-import com.android.internal.util.radiant.FileUtils;
 
 public class DeviceSettings extends PreferenceFragment
         implements Preference.OnPreferenceChangeListener {
