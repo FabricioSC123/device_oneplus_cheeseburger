@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package com.derp.device.DeviceSettings;
+package com.radiant.device.DeviceSettings;
 
 import java.util.HashMap;
 import java.util.Map;

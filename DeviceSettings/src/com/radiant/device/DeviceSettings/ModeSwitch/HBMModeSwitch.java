@@ -15,7 +15,7 @@
 * along with this program. If not, see <http://www.gnu.org/licenses/>.
 *
 */
-package com.derp.device.DeviceSettings;
+package com.radiant.device.DeviceSettings;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -23,11 +23,9 @@ import androidx.preference.Preference;
 import androidx.preference.Preference.OnPreferenceChangeListener;
 import androidx.preference.PreferenceManager;
 
-import com.derp.device.DeviceSettings.DeviceSettings;
+public class HBMModeSwitch implements OnPreferenceChangeListener {
 
-public class DCModeSwitch implements OnPreferenceChangeListener {
-
-    private static final String FILE = "/proc/flicker_free/flicker_free";
+    private static final String FILE = "/sys/devices/virtual/graphics/fb0/hbm";
 
     public static String getFile() {
         if (Utils.fileWritable(FILE)) {

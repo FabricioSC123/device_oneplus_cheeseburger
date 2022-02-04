@@ -564,7 +564,7 @@
 
     <!-- Names of the key handler classes -->
     <string-array name="config_deviceKeyHandlerClasses" translatable="false">
-        <item>com.derp.device.DeviceSettings.KeyHandler</item>
+        <item>com.radiant.device.DeviceSettings.KeyHandler</item>
     </string-array>
 
 

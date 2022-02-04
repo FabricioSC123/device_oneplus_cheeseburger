@@ -15,7 +15,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           xmlns:tools="http://schemas.android.com/tools"
           android:sharedUserId="android.uid.system"
-          package="com.derp.device.DeviceSettings"
+          package="com.radiant.device.DeviceSettings"
           android:versionCode="1"
           android:versionName="1.0" >
 
@@ -55,7 +55,7 @@
         <activity android:name=".KeyHandler" />
 
         <activity
-            android:name="com.derp.device.DeviceSettings.PanelSettingsActivity"
+            android:name="com.radiant.device.DeviceSettings.PanelSettingsActivity"
             android:exported="true"
             android:label="@string/panel_category_title"
             android:launchMode="singleTask"
@@ -66,7 +66,7 @@
             </intent-filter>
         </activity>
 
-        <receiver android:name="com.derp.device.DeviceSettings.Startup" >
+        <receiver android:name="com.radiant.device.DeviceSettings.Startup" >
             <intent-filter android:priority="100" >
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
@@ -74,7 +74,7 @@
 
         <!-- Quick Settings Tiles -->
         <service
-            android:name="com.derp.device.DeviceSettings.DCModeTileService"
+            android:name="com.radiant.device.DeviceSettings.DCModeTileService"
             android:icon="@drawable/ic_dimming_off"
             android:label="@string/tile_dc_mode"
             android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
@@ -84,7 +84,7 @@
             </intent-filter>
         </service>
         <service
-            android:name="com.derp.device.DeviceSettings.PanelModeTileService"
+            android:name="com.radiant.device.DeviceSettings.PanelModeTileService"
             android:icon="@drawable/ic_panel_tile"
             android:label="@string/tile_panel_mode"
             android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
@@ -94,7 +94,7 @@
             </intent-filter>
         </service>
         <service
-            android:name="com.derp.device.DeviceSettings.HBMModeTileService"
+            android:name="com.radiant.device.DeviceSettings.HBMModeTileService"
             android:icon="@drawable/ic_hbm_tile"
             android:label="@string/tile_hbm_mode"
             android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
@@ -107,7 +107,7 @@
         <!-- Search indexing -->
         <provider
             android:name=".ConfigPanelSearchIndexablesProvider"
-            android:authorities="com.derp.device"
+            android:authorities="com.radiant.device"
             android:multiprocess="false"
             android:grantUriPermissions="true"
             android:permission="android.permission.READ_SEARCH_INDEXABLES"
