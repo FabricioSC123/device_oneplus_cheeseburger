@@ -5,6 +5,7 @@
   },
   {
     "repository": "hardware_oneplus",
+    "remote": "radiant",
     "target_path": "hardware/oneplus"
   },
     {
