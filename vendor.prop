@@ -1,4 +1,6 @@
 # Audio
+ro.hardware.fingerprint=fpc
+vendor.boot.project_name=16859
 persist.vendor.audio_hal.dsp_bit_width_enforce_mode=24
 persist.vendor.audio.aanc.enable=true
 persist.vendor.audio.fluence.speaker=true
@@ -70,8 +72,8 @@ persist.vendor.camera.gyro.disable=0
 # CNE
 persist.vendor.cne.feature=1
 
-# Data
-persist.vendor.data.iwlan.enable=true
+# DPM
+persist.vendor.dpmhalservice.enable=1
 
 # Display
 ro.vendor.display.sensortype=3
@@ -98,21 +100,13 @@ ro.vendor.qti.va_aosp.support=1
 ro.vendor.extension_library=libqti-perfd-client.so
 
 # RIL
-persist.vendor.radio.add_power_save=1
-persist.vendor.radio.aosp_usr_pref_sel=true
+persist.vendor.radio.enableadvancedscan=false
 persist.vendor.radio.apm_sim_not_pwdn=1
-persist.vendor.radio.bar_fake_gcell=1
-persist.vendor.radio.custom_ecc=1
-persist.vendor.radio.data_con_rprt=1
-persist.vendor.radio.data_ltd_sys_ind=1
-persist.vendor.radio.flexmap_type=none
-persist.vendor.radio.force_on_dc=true
-persist.vendor.radio.ignore_dom_time=10
-persist.vendor.radio.mt_sms_ack=30
-persist.vendor.radio.procedure_bytes=SKIP
-persist.vendor.radio.rat_on=combine
 persist.vendor.radio.sib16_support=1
-vendor.rild.libpath=/vendor/lib64/libril-qc-qmi-1.so
+persist.vendor.radio.custom_ecc=1
+persist.vendor.radio.rat_on=combine
+persist.vendor.radio.procedure_bytes=SKIP
+ro.telephony.iwlan_operation_mode=legacy
 
 # Sensors
 ro.vendor.sensors.dev_ori=true
