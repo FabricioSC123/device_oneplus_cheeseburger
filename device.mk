@@ -28,6 +28,7 @@ $(call inherit-product, vendor/oneplus/cheeseburger/cheeseburger-vendor.mk)
 DEVICE_PACKAGE_OVERLAYS += \
     $(LOCAL_PATH)/overlay \
     $(LOCAL_PATH)/overlay-lineage
+    $(LOCAL_PATH)/overlay-sc
 
 # Device uses high-density artwork where available
 PRODUCT_AAPT_CONFIG := normal

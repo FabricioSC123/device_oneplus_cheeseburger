@@ -68,6 +68,10 @@ vendor.qcom.bluetooth.soc=cherokee
 
 # Camera
 persist.vendor.camera.gyro.disable=0
+vendor.camera.aux.packagelist=com.android.camera,com.oneplus.camera,org.codeaurora.snapcam
+# Chipset
+ro.soc.manufacturer=Qualcomm
+ro.soc.model=MSM8998
 
 # CNE
 persist.vendor.cne.feature=1
