@@ -206,13 +206,12 @@ on late-fs
     # Start devices by sysfs trigger
     start init-devstart-sh
 
-on late-init
-    # Start services early for bootanim
+    # Start services for bootanim
     start surfaceflinger
     start bootanim
-    start vendor.hwcomposer-2-4
+    start vendor.hwcomposer-2-1
     start vendor.configstore-hal
-    start vendor.qti.hardware.display.allocator
+    start vendor.gralloc-2-0
 
     # Mount RW partitions which need to run fsck
     mount_all /vendor/etc/fstab.qcom --late
