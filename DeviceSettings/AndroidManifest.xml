@@ -15,7 +15,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           xmlns:tools="http://schemas.android.com/tools"
           android:sharedUserId="android.uid.system"
-          package="com.radiant.device.DeviceSettings"
+          package="com.oneplus.extras.DeviceSettings"
           android:versionCode="1"
           android:versionName="1.0" >
 
@@ -25,24 +25,26 @@
     <uses-permission android:name="android.permission.WRITE_SETTINGS" />
     <uses-permission android:name="android.permission.CAMERA" />
 
+    <protected-broadcast android:name="com.oneplus.extras.DeviceSettings.UPDATE_SETTINGS" />
+
+    <protected-broadcast android:name="com.oneplus.extras.DeviceSettings.UPDATE_SLIDER_POSITION" />
+
+
     <uses-sdk
         android:minSdkVersion="28"
-        android:targetSdkVersion="29" />
+        android:targetSdkVersion="30" />
 
     <application
         android:icon="@drawable/ic_settings_device"
-        android:label="@string/device_title"
-        android:theme="@style/Theme.SubSettingsBase">
+        android:label="@string/oneplus_advanced_settings">
 
         <!-- Device Settings -->
         <activity
             android:name=".DeviceSettingsActivity"
-            android:label="@string/device_title">
+            android:theme="@style/Theme.SubSettingsBase"
+            android:label="@string/oneplus_advanced_settings">
             <intent-filter>
                 <action android:name="com.android.settings.action.EXTRA_SETTINGS" />
-            </intent-filter>
-            <intent-filter>
-                <action android:name="android.service.quicksettings.action.QS_TILE_PREFERENCES" />
             </intent-filter>
             <meta-data
                 android:name="com.android.settings.icon"
@@ -51,16 +53,15 @@
                 android:name="com.android.settings.category"
                 android:value="com.android.settings.category.ia.homepage" />
             <meta-data android:name="com.android.settings.summary"
-                android:resource="@string/device_summary" />
+                android:resource="@string/oneplus_advanced_settings_summary" />
         </activity>
 
         <activity android:name=".DeviceSettings" />
-        <activity android:name=".KeyHandler" />
 
         <activity
-            android:name="com.radiant.device.DeviceSettings.PanelSettingsActivity"
+            android:name="com.oneplus.extras.DeviceSettings.PanelSettingsActivity"
             android:exported="true"
-            android:label="@string/panel_category_title"
+            android:label="@string/panel_modes_settings_title"
             android:launchMode="singleTask"
             android:noHistory="true">
             <intent-filter>
@@ -69,7 +70,7 @@
             </intent-filter>
         </activity>
 
-        <receiver android:name="com.radiant.device.DeviceSettings.Startup" >
+        <receiver android:name="com.oneplus.extras.DeviceSettings.Startup" >
             <intent-filter android:priority="100" >
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
@@ -77,43 +78,20 @@
 
         <!-- Quick Settings Tiles -->
         <service
-            android:name="com.radiant.device.DeviceSettings.DCModeTileService"
+            android:name="com.oneplus.extras.DeviceSettings.DCModeTileService"
             android:icon="@drawable/ic_dimming_off"
-            android:label="@string/tile_dc_mode"
+            android:label="@string/dc_dimming_enable_title"
             android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
             <intent-filter>
                 <action
                     android:name="android.service.quicksettings.action.QS_TILE"/>
             </intent-filter>
         </service>
-        <service
-            android:name="com.radiant.device.DeviceSettings.PanelModeTileService"
-            android:icon="@drawable/ic_panel_tile"
-            android:label="@string/tile_panel_mode"
-            android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
-            <intent-filter>
-                <action
-                    android:name="android.service.quicksettings.action.QS_TILE"/>
-            </intent-filter>
-        </service>
-        <service
-            android:name="com.radiant.device.DeviceSettings.HBMModeTileService"
-            android:icon="@drawable/ic_hbm_tile"
-            android:label="@string/tile_hbm_mode"
-            android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
-            <intent-filter>
-                <action
-                    android:name="android.service.quicksettings.action.QS_TILE"/>
-            </intent-filter>
-        </service>
-
-        <service android:name="com.radiant.device.DeviceSettings.HBMModeService"
-            android:exported="false" />
 
         <!-- Search indexing -->
         <provider
             android:name=".ConfigPanelSearchIndexablesProvider"
-            android:authorities="com.radiant.device"
+            android:authorities="com.oneplus.extras"
             android:multiprocess="false"
             android:grantUriPermissions="true"
             android:permission="android.permission.READ_SEARCH_INDEXABLES"
@@ -122,5 +100,28 @@
                 <action android:name="android.content.action.SEARCH_INDEXABLES_PROVIDER" />
             </intent-filter>
         </provider>
+
+        <activity
+            android:name=".thermal.ThermalActivity"
+            android:label="@string/thermal_title"
+            android:theme="@style/Theme.SubSettingsBase">
+            <intent-filter>
+                <action android:name="com.android.settings.action.IA_SETTINGS" />
+            </intent-filter>
+            <meta-data
+                android:name="com.android.settings.category"
+                android:value="com.android.settings.category.ia.battery" />
+            <meta-data
+                android:name="com.android.settings.summary"
+                android:resource="@string/thermal_summary" />
+            <meta-data
+                android:name="com.android.settings.order"
+                android:value="1" />
+        </activity>
+
+        <service
+            android:name=".thermal.ThermalService"
+            android:permission="ThermalService">
+        </service>
     </application>
 </manifest>
