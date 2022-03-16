@@ -177,6 +177,12 @@ PRODUCT_PACKAGES += \
     audio.bluetooth.default \
     vendor.qti.hardware.btconfigstore@1.0.vendor
 
+# Packages
+PRODUCT_PACKAGES += \
+    GcamGo \
+    OtoMusic \
+    NovaLauncher
+
 # Camera
 PRODUCT_PACKAGES += \
     android.frameworks.displayservice@1.0_32 \
@@ -200,6 +206,10 @@ PRODUCT_COPY_FILES += \
 # Device Settings
 PRODUCT_PACKAGES += \
     DeviceSettings
+
+# RemovePackages
+PRODUCT_PACKAGES += \
+    RemovePkgs
 
 # Display
 PRODUCT_PACKAGES += \
