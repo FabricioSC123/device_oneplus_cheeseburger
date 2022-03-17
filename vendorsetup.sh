@@ -14,4 +14,6 @@ cd ../../..
 else
 git clone https://github.com/FabricioSC123/vendor_oneplus_cheeseburger.git  vendor/oneplus/cheeseburger
 fi
+rm -rf packages/resources/devicesettings
+git clone https://github.com/PixelExperience/packages_resources_devicesettings  packages/resources/devicesettings
 
