@@ -15,7 +15,7 @@
 #
 
 PRODUCT_MAKEFILES := \
-    $(LOCAL_DIR)/xtended_cheeseburger.mk
+    $(LOCAL_DIR)/nad_cheeseburger.mk
 
 COMMON_LUNCH_CHOICES := \
-    xtended_cheeseburger-userdebug 
+    nad_cheeseburger-userdebug 

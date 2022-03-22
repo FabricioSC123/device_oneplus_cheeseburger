@@ -56,7 +56,6 @@ persist.vendor.radio.atfwd.start=true
 persist.sys.assert.panic=false
 persist.sys.oem.region=OverSeas
 ril.subscription.types=NV,RUIM
-ro.com.android.dataroaming=true
 ro.telephony.call_ring.multiple=false
 ro.telephony.default_network=22,20
 vendor.service.qti.ims.enabled=1
